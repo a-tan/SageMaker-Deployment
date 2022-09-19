@@ -36,4 +36,6 @@ def transformation():
         }
 
     resultjson = json.dumps(result)
-    return flask.Response(response=resultjson, status=200, mimetype='application/json')
+    r = flask.Response(response=resultjson, status=200, mimetype='application/json')
+    r.headers.add('X-Amzn-SageMaker-Custom-Attributes','fromServer'+flask.request.headers['X-Amzn-SageMaker-Custom-Attributes'])
+    return r
